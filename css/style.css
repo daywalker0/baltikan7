@@ -1165,9 +1165,6 @@ svg.hidden {
 	.footer_r {
 		flex-direction: column;
 	}
-	.footer_r_soc {
-		order: -1;
-	}
 	.footer_r_cop, .footer_r_cop a {
 		justify-content: center;
 	}
