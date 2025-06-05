@@ -202,7 +202,7 @@ a:hover {
 	border-radius: 20px;
 }
 .text {
-	padding-top: 320px;
+	padding-top: 220px;
 	font-weight: 400;
 	font-size: 60px;
 	line-height: 120%;
@@ -810,19 +810,19 @@ svg.hidden {
 		padding: 24px 0;
 	}
 	.prod_1 {
-		background: url("../img/Rectangle9867971.jpg") no-repeat;
+		background: url("../img/Rectangle_prod1-360.png") no-repeat;
 		background-size: contain;
 	}
 	.prod_2 {
-		background: url("../img/Rectangle7146756.jpg") no-repeat;
+		background: url("../img/Rectangle_prod2-360.png") no-repeat;
 		background-size: contain;
 	}
 	.prod_3 {
-		background: url("../img/Rectangle737651.jpg") no-repeat;
+		background: url("../img/Rectangle_prod3-360.png") no-repeat;
 		background-size: contain;
 	}
 	.prod_4 {
-		background: url("../img/Rectangle768751.jpg") no-repeat;
+		background: url("../img/Rectangle_prod4-360.png") no-repeat;
 		background-size: contain;
 	}
 	.slides_it_im_prod {
@@ -908,19 +908,19 @@ svg.hidden {
 		font-size: 16px;
 	}
 	.prod_1 {
-		background: url("../img/Rectangle4751.jpg") no-repeat;
+		background: url("../img/Rectangle_prod1-768.png") no-repeat;
 		background-size: contain;
 	}
 	.prod_2 {
-		background: url("../img/Rectangle7167457.jpg") no-repeat;
+		background: url("../img/Rectangle_prod2-768.png") no-repeat;
 		background-size: contain;
 	}
 	.prod_3 {
-		background: url("../img/Rectangle7365771.jpg") no-repeat;
+		background: url("../img/Rectangle_prod3-768.png") no-repeat;
 		background-size: contain;
 	}
 	.prod_4 {
-		background: url("../img/Rectangle-47851.jpg") no-repeat;
+		background: url("../img/Rectangle_prod4-768.png") no-repeat;
 		background-size: contain;
 	}
 	.slides_it {
@@ -969,19 +969,19 @@ svg.hidden {
 }
 @media (min-width: 1400px){
 	.prod_1 {
-		background: url("../img/Rectangle71.jpg") no-repeat;
+		background: url("../img/Rectangle_prod1-1440.png") no-repeat;
 		background-size: contain;
 	}
 	.prod_2 {
-		background: url("../img/Rectangle711.jpg") no-repeat;
+		background: url("../img/Rectangle_prod2-1440.png") no-repeat;
 		background-size: contain;
 	}
 	.prod_3 {
-		background: url("../img/Rectangle751.jpg") no-repeat;
+		background: url("../img/Rectangle_prod3-1440.png") no-repeat;
 		background-size: contain;
 	}
 	.prod_4 {
-		background: url("../img/Rectangle581.jpg") no-repeat;
+		background: url("../img/Rectangle_prod4-1440.png") no-repeat;
 		background-size: contain;
 	}
 	.slides {
@@ -1352,10 +1352,14 @@ svg.hidden {
 	.text {
 		font-size: 32px;
 	}
-	.text_m {
 
+}
+
+@media screen and (max-height: 1000px) {
+	.cont {
+		margin-top: 100px;
+		margin-bottom: 100px;
 	}
-
 }
 @media (max-height: 800px){
 	.page_ag {
@@ -1367,6 +1371,16 @@ svg.hidden {
 	.noalc {
 		height: 10vh;
 	}
+}
 
+@media screen and (max-width: 1366px) {
+	.baner video {
+		aspect-ratio: 790 / 890;
+	}
+}
 
+@media screen and (max-width: 768px) {
+	.baner video {
+		aspect-ratio: 690 / 925;
+	}
 }
