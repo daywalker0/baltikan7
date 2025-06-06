@@ -627,10 +627,13 @@ svg.hidden {
 	background: #fff;
 }
 .slides_it_tx {
-	/*padding: 32px;*/
+	padding: 32px;
 	display: flex;
 	flex-direction: column;
 	gap: 20px;
+	a {
+		margin-bottom: 15px;
+	}
 }
 .slides_it_tx_t {
 	position: relative;
@@ -795,7 +798,7 @@ svg.hidden {
 	right: 32px;
 	bottom: 32px;
 }
-@media (min-width: 360px){
+@media (min-width: 340px){
 	.slides {
 		width: 336px;
 		height: auto;
@@ -809,6 +812,9 @@ svg.hidden {
 	}
 	.slides_it_tx {
 		padding: 24px 0;
+		a {
+			margin-bottom: 0;
+		}
 	}
 	.prod_1 {
 		background: url("../img/Rectangle_prod1-360.png") no-repeat;
