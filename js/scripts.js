@@ -1,9 +1,4 @@
-
-
-$( document ).ready(function() {
-
-
-
+$(document).ready(function() {
     const container = $('.produkt');
 
     // Добавляем фоновые слои один раз
@@ -57,54 +52,65 @@ $( document ).ready(function() {
 
 
 
+    let sections = $('section'),
+        nav = $('.nav'),
+        nav_height = nav.outerHeight();
+    $(window).on('scroll', function () {
+        $('.nav a').removeClass('active');
+        let cur_pos = $(this).scrollTop();
+        sections.each(function() {
+            let top = $(this).offset().top - nav_height - 180,
+                bottom = top + $(this).outerHeight();
+            if (cur_pos >= top && cur_pos <= bottom) {
+                nav.find('a').removeClass('active');
+                sections.removeClass('active');
+                $(this).addClass('active');
+                nav.find('a[href="#'+$(this).attr('id')+'"]').addClass('active');
+            }
+        });
+    });
+    nav.find('a').on('click', function () {
+        let $el = $(this),
+            id = $el.attr('href');
 
+        $('.menu').removeClass('menu_active');
+        $('body').removeClass('menu_active');
 
+        $('html, body').animate({
+            scrollTop: $(id).offset().top - nav_height
+        }, 600);
+        return false;
+    });
 
-let sections = $('section'),
-    nav = $('.nav'),
-    nav_height = nav.outerHeight();
-$(window).on('scroll', function () {
-    $('.nav a').removeClass('active');
-    let cur_pos = $(this).scrollTop();
-    sections.each(function() {
-        let top = $(this).offset().top - nav_height - 180,
-            bottom = top + $(this).outerHeight();
-        if (cur_pos >= top && cur_pos <= bottom) {
-            nav.find('a').removeClass('active');
-            sections.removeClass('active');
-            $(this).addClass('active');
-            nav.find('a[href="#'+$(this).attr('id')+'"]').addClass('active');
+    // Плавный скролл для .banner__down к .produkt
+    $('.banner__down').on('click', function () {
+        const target = $('.produkt');
+        const headerHeight = $('.header').outerHeight();
+        if (target.length) {
+            $('html, body').animate({
+                scrollTop: target.offset().top - headerHeight
+            }, 600); // 600ms — скорость анимации
+        } else {
+            console.log('Ошибка: Элемент .produkt не найден!');
         }
     });
-});
-nav.find('a').on('click', function () {
-    let $el = $(this),
-        id = $el.attr('href');
 
-    $('.menu').removeClass('menu_active');
-    $('body').removeClass('menu_active');
+    const menuInit = () => {
+        const menu = document.querySelector('.menu')
+        const open = document.querySelector('.header__burger')
+        const close = document.querySelector('.js-menu__close')
+        const body = document.querySelector('body')
+        if (!menu || !open || !close) return
+        open.addEventListener('click', () => {
+            menu.classList.add('menu_active')
+            body.classList.add('menu_active')
+        })
+        close.addEventListener('click', () => {
+            menu.classList.remove('menu_active')
+            body.classList.remove('menu_active')
+        })
+    }
 
-    $('html, body').animate({
-        scrollTop: $(id).offset().top - nav_height
-    }, 600);
-    return false;
-});
-});
-const menuInit = () => {
-    const menu = document.querySelector('.menu')
-    const open = document.querySelector('.header__burger')
-    const close = document.querySelector('.js-menu__close')
-    const body = document.querySelector('body')
-    if (!menu || !open || !close) return
-    open.addEventListener('click', () => {
-        menu.classList.add('menu_active')
-        body.classList.add('menu_active')
-    })
-    close.addEventListener('click', () => {
-        menu.classList.remove('menu_active')
-        body.classList.remove('menu_active')
-    })
-}
     function setCookie(name, value, days) {
         let expires = "";
         if (days) {
@@ -120,37 +126,32 @@ const menuInit = () => {
         return matches ? decodeURIComponent(matches[1]) : undefined;
     }
 
-
     function checkCookies() {
         let cookieNote = document.getElementById('cookie_note');
         let cookieBtnAccept = cookieNote.querySelector('.cookie_accept');
 
-
         if (!getCookie('cookies_policy')) {
             cookieNote.classList.add('show');
         }
-
 
         cookieBtnAccept.addEventListener('click', function () {
             setCookie('cookies_policy', 'true', 365);
             cookieNote.classList.remove('show');
         });
     }
+
     function checkAge() {
         let ageBtnAccept = document.querySelector('.button_ok');
-
         let page_ag = document.querySelector('.page_ag');
         let page_app = document.querySelector('.page_app');
 
         if (!getCookie('cookies_age')) {
-
             page_ag.classList.add('show');
             page_app.classList.remove('show');
         }
 
         ageBtnAccept.addEventListener('click', function () {
             setCookie('cookies_age', 'true', 365);
-
             page_ag.classList.remove('show');
             page_app.classList.add('show');
             $('.slides').slick({
@@ -173,51 +174,48 @@ const menuInit = () => {
                     }
                 ]
             });
-
         });
     }
+
     checkCookies();
     checkAge();
 
+    const openModal = (sel) => {
+        document.querySelector(sel).style.display = 'block';
+        document.querySelector('.modal__bg').style.display = 'block';
+        document.body.classList.add('fixed-scroll');
+    }
 
-const openModal = (sel) => {
-    document.querySelector(sel).style.display = 'block';
-    document.querySelector('.modal__bg').style.display = 'block';
-    document.body.classList.add('fixed-scroll');
-}
-
-
-const closeModal = (sel) => {
-    document.querySelectorAll(sel).forEach(item => {
-        item.style.display = 'none';
-    })
-    document.querySelector('.modal__bg').style.display = 'none';
-    document.body.classList.remove('fixed-scroll');
-}
-
-$('.btn_news').on('click', function (e) {
-    e.preventDefault();
-    const idnews = $(this).data('idnews');
-if(idnews > 0) {
-    closeModal('.modal');
-    openModal('.modal.news_' + idnews);
-}
-});
-const closeButton = () => {
-    const closeModalsBtn = document.querySelectorAll('.modal__close');
-    if (!closeModalsBtn) return;
-    closeModalsBtn.forEach(item => {
-        item.addEventListener('click', () => {
-            closeModal('.modal');
+    const closeModal = (sel) => {
+        document.querySelectorAll(sel).forEach(item => {
+            item.style.display = 'none';
         })
-    })
-}
+        document.querySelector('.modal__bg').style.display = 'none';
+        document.body.classList.remove('fixed-scroll');
+    }
 
+    $('.btn_news').on('click', function (e) {
+        e.preventDefault();
+        const idnews = $(this).data('idnews');
+        if(idnews > 0) {
+            closeModal('.modal');
+            openModal('.modal.news_' + idnews);
+        }
+    });
 
-const init = () => {
-    menuInit();
-    closeButton();
-};
-document.addEventListener('DOMContentLoaded', init);
+    const closeButton = () => {
+        const closeModalsBtn = document.querySelectorAll('.modal__close');
+        if (!closeModalsBtn) return;
+        closeModalsBtn.forEach(item => {
+            item.addEventListener('click', () => {
+                closeModal('.modal');
+            })
+        })
+    }
 
-
+    const init = () => {
+        menuInit();
+        closeButton();
+    };
+    document.addEventListener('DOMContentLoaded', init);
+});

@@ -288,6 +288,7 @@ a:hover {
 	left: calc(50% - 30px);
 	-webkit-animation: 1s infinite alternate arrowBounce;
 	animation: 1s infinite alternate arrowBounce;
+	cursor: pointer;
 }
 .banner__down:hover {
 	background: #4F555B1A;
