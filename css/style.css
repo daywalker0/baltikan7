@@ -135,7 +135,7 @@ a:hover {
 	top: 0;
 	left: 0;
 	right: 0;
-	z-index: 1000;
+	z-index: 2;
 	background: linear-gradient(0deg, #F4F4F4, #F4F4F4), linear-gradient(0deg, #F9F9F9, #F9F9F9);
 }
 
@@ -1294,6 +1294,7 @@ svg.hidden {
 	}
 	.header {
 		padding-top: 15px;
+		padding-bottom: 15px;
 	}
 
 	.parters_box {
@@ -1331,7 +1332,7 @@ svg.hidden {
 		width: 68px;
 	}
 	.header {
-		height: 80px;
+		height: 95px;
 	}
 	.header .logo_text {
 		font-size: 14px;
